@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nool Khadi Try-On</title>
+  <meta name="description" content="Try contemporary Kerala khadi outfits on a 3D model. Pick a look, change colours, spin it around and save a snapshot." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main class="app">
+    <section class="stage" aria-label="3D fitting room">
+      <header class="brand">
+        <span class="brand-mark">നൂൽ</span>
+        <div>
+          <h1>Nool</h1>
+          <p>Kerala khadi, woven 40 km from you</p>
+        </div>
+      </header>
+      <div id="viewport" class="viewport"></div>
+      <div class="stage-tools">
+        <button id="rotateBtn" class="chip" aria-pressed="true">Auto-rotate on</button>
+        <button id="resetBtn" class="chip">Full look</button>
+        <button id="closeBtn" class="chip">Face close-up</button>
+        <button id="snapBtn" class="chip chip-solid">Save snapshot</button>
+      </div>
+      <p class="hint">Drag to turn · scroll or pinch to zoom</p>
+      <div id="busy" class="busy" role="status">Tailoring…</div>
+      <div id="loading" class="loading">Weaving your fitting room…<small>Sculpting the models takes a few seconds the first time</small></div>
+    </section>
+
+    <aside class="panel" aria-label="Outfit controls">
+      <div class="group">
+        <h2>Model</h2>
+        <div class="seg" role="tablist" id="genderSeg">
+          <button role="tab" data-gender="male" aria-selected="true">Men</button>
+          <button role="tab" data-gender="female" aria-selected="false">Women</button>
+        </div>
+        <div class="skin-row" id="skinRow" aria-label="Skin tone"></div>
+      </div>
+
+      <div class="group">
+        <h2>Outfit</h2>
+        <div class="outfits" id="outfitGrid"></div>
+      </div>
+
+      <div class="group">
+        <h2><span id="mainLabel">Main colour</span> <span class="swatch-name" id="mainName"></span></h2>
+        <div class="swatches" id="mainSwatches"></div>
+        <h2 class="mt"><span id="accentLabel">Second colour</span> <span class="swatch-name" id="accentName"></span></h2>
+        <div class="swatches" id="accentSwatches"></div>
+      </div>
+
+      <div class="group weaver" id="weaverCard">
+        <div class="weaver-top">
+          <div>
+            <h3 id="wTitle"></h3>
+            <p id="wDesc"></p>
+          </div>
+          <div class="price" id="wPrice"></div>
+        </div>
+        <div class="split" aria-label="Where your money goes">
+          <div class="bar"><span id="wBarWeaver"></span><span id="wBarSpin"></span><span id="wBarRest"></span></div>
+          <ul class="legend">
+            <li><i class="k-weave"></i>Weaver <b id="wWeaver"></b></li>
+            <li><i class="k-spin"></i>Spinner <b id="wSpin"></b></li>
+            <li><i class="k-rest"></i>Dye, tailoring, store <b id="wRest"></b></li>
+          </ul>
+        </div>
+        <p class="made" id="wMade"></p>
+        <p class="note">Prices and weaver split are illustrative, from the Nool revitalisation plan.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
